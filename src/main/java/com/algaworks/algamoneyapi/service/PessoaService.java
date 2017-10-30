@@ -28,9 +28,8 @@ public class PessoaService {
 	}
 	
 	
-	private Pessoa BuscarPessoaPeloCodigo(Long codigo) {
+	public Pessoa BuscarPessoaPeloCodigo(Long codigo) {
 		Pessoa pessoaAtual = pessoaRepository.findOne(codigo);
-		
 		if(pessoaAtual == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
