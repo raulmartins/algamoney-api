@@ -10,8 +10,9 @@ import javax.validation.constraints.NotNull;
 public class Permissao {
 	@Id
 	private Long codigo;
+	
 	@NotNull
-	private String descricacao;
+	private String descricao;
 	
 	
 	public Long getCodigo() {
@@ -20,18 +21,18 @@ public class Permissao {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getDescricacao() {
-		return descricacao;
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setDescricacao(String descricacao) {
-		this.descricacao = descricacao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((descricacao == null) ? 0 : descricacao.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		return result;
 	}
 	@Override
@@ -48,15 +49,13 @@ public class Permissao {
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
-		if (descricacao == null) {
-			if (other.descricacao != null)
+		if (descricao == null) {
+			if (other.descricao != null)
 				return false;
-		} else if (!descricacao.equals(other.descricacao))
+		} else if (!descricao.equals(other.descricao))
 			return false;
 		return true;
 	}
-	
-	
 	
 
 }

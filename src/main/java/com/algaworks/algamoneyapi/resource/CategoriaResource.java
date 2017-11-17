@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import com.algaworks.algamoneyapi.repository.CategoriaRepository;
 import com.algaworks.algamoneyapi.service.CategoriaService;
 
@@ -36,11 +38,13 @@ public class CategoriaResource {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
 	public List<Categoria> listar(){
 		return categoriaRepository.findAll();
 	}
 	
 	@PostMapping
+//	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA')") //and  #oauth2.hasScope('read')
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
@@ -49,6 +53,7 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("/{codigo}")
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
 	public ResponseEntity<Categoria> buscar(@PathVariable Long codigo){
 		Categoria categoria = categoriaRepository.findOne(codigo);
 		
@@ -57,6 +62,7 @@ public class CategoriaResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	@PreAuthorize("hasAuthority('ROLE_REMOVER_CATEGORIA')")
 	public void deletar(@PathVariable Long codigo) {
 		categoriaRepository.delete(codigo);
 	}

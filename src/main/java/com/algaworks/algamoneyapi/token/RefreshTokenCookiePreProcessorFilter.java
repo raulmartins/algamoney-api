@@ -53,7 +53,6 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter{
 		
 		@Override
 		public Map<String, String[]> getParameterMap() {
-			// TODO Auto-generated method stub
 			ParameterMap<String,String[]> map = new ParameterMap<>(getRequest().getParameterMap());
 			map.put("refresh_token", new String[] { refreshToken });
 			map.setLocked(true);

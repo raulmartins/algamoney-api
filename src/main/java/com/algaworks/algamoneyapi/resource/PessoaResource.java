@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class PessoaResource {
 	}
 	
 	@GetMapping("/{codigo}")
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
 	public ResponseEntity<Pessoa> buscar(@PathVariable Long codigo){
 		Pessoa pessoa = pessoaRepository.findOne(codigo);
 		
@@ -46,6 +48,7 @@ public class PessoaResource {
 	}
 	
 	@PostMapping
+//	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
 	public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
 		
@@ -56,6 +59,7 @@ public class PessoaResource {
 	
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	@PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA')")
 	public void deletar(@PathVariable Long codigo) {
 		 pessoaRepository.delete(codigo);
 		
