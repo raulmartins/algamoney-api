@@ -15,7 +15,6 @@ public class RecursoCriadoEvent extends ApplicationEvent{
 	
 	public RecursoCriadoEvent(Object source, HttpServletResponse response, Long codigo) {
 		super(source);
-		// TODO Auto-generated constructor stub
 		
 		this.codigo = codigo;
 		this.response = response;

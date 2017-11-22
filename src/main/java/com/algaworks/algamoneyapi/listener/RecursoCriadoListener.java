@@ -15,7 +15,6 @@ public class RecursoCriadoListener implements ApplicationListener<RecursoCriadoE
 
 	@Override
 	public void onApplicationEvent(RecursoCriadoEvent recursoCriadoEvent) {
-		// TODO Auto-generated method stub
 		
 		HttpServletResponse response = recursoCriadoEvent.getResponse();
 		Long codigo = recursoCriadoEvent.getCodigo();
